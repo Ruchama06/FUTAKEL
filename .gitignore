@@ -2,6 +2,7 @@
 node_modules/
 
 # Variables d'environnement
+backend/.env
 .env
 .env.*
 !.env.example
