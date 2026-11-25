@@ -1,0 +1,255 @@
+generator client {
+  provider = "prisma-client"
+  output = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// =====================================================
+// ADMINISTRATION
+// =====================================================
+
+model Utilisateur {
+  id             String   @id @default(cuid())
+  nom            String
+  prenom         String
+  email          String   @unique
+  motDePasseHash String
+  rolePlateforme String   @default("GESTIONNAIRE")
+  statut         String   @default("ACTIF")
+  dateCreation   DateTime @default(now())
+
+  paiementsEnregistres Paiement[]        @relation("PaiementEnregistrePar")
+  depensesEnregistrees Depense[]         @relation("DepenseEnregistrePar")
+  mouvementsCaisse     MouvementCaisse[]
+
+  @@map("utilisateurs")
+}
+
+model Etablissement {
+  id             String   @id @default(cuid())
+  nom            String
+  adresse        String?
+  telephone      String?
+  statut         String   @default("ACTIF")
+  dateCreation   DateTime @default(now())
+
+  anneesScolaires AnneeScolaire[]
+  eleves          Eleve[]
+  frais           Frais[]
+  paiements       Paiement[]
+  recus           Recu[]
+  caisse          Caisse?
+  depenses        Depense[]
+
+  @@map("etablissements")
+}
+
+// =====================================================
+// SCOLARITÉ
+// =====================================================
+
+model AnneeScolaire {
+  id              String   @id @default(cuid())
+  idEtablissement String
+  libelle         String
+  dateDebut       DateTime
+  dateFin         DateTime
+  statut          String   @default("ACTIVE")
+
+  etablissement Etablissement @relation(fields: [idEtablissement], references: [id])
+  classes       Classe[]
+  compteurRecu  CompteurRecu?
+
+  @@unique([idEtablissement, libelle])
+  @@map("annees_scolaires")
+}
+
+model Classe {
+  id              String  @id @default(cuid())
+  idAnnee         String
+  idEtablissement String
+  nom             String
+  description     String?
+
+  annee  AnneeScolaire @relation(fields: [idAnnee], references: [id])
+  eleves Eleve[]
+  frais  Frais[]
+
+  @@unique([idAnnee, nom])
+  @@map("classes")
+}
+
+model Eleve {
+  id              String   @id @default(cuid())
+  idEtablissement String
+  idClasse        String?
+  matricule       String
+  nom             String
+  prenom          String
+  dateNaissance   DateTime?
+  sexe            String?
+  adresse         String?
+  statut          String   @default("ACTIF")
+  dateCreation    DateTime @default(now())
+
+  etablissement Etablissement @relation(fields: [idEtablissement], references: [id])
+  classe        Classe?       @relation(fields: [idClasse], references: [id])
+  fraisEleves   FraisEleve[]
+  paiements     Paiement[]
+
+  @@unique([idEtablissement, matricule])
+  @@map("eleves")
+}
+
+// =====================================================
+// FRAIS ET PAIEMENTS
+// =====================================================
+
+model Frais {
+  id              String   @id @default(cuid())
+  idClasse        String
+  idEtablissement String
+  libelle         String
+  montantInitial  Decimal  @db.Decimal(12, 2)
+  dateEcheance    DateTime?
+  statut          String   @default("ACTIF")
+  dateCreation    DateTime @default(now())
+
+  classe        Classe        @relation(fields: [idClasse], references: [id])
+  etablissement Etablissement @relation(fields: [idEtablissement], references: [id])
+  fraisEleves   FraisEleve[]
+
+  @@map("frais")
+}
+
+model FraisEleve {
+  id              String   @id @default(cuid())
+  idEleve         String
+  idFrais         String
+  montantInitial  Decimal  @db.Decimal(12, 2)
+  montantNet      Decimal  @db.Decimal(12, 2)
+  dateAttribution DateTime @default(now())
+
+  eleve        Eleve                 @relation(fields: [idEleve], references: [id])
+  frais        Frais                 @relation(fields: [idFrais], references: [id])
+  affectations AffectationPaiement[]
+
+  @@unique([idEleve, idFrais])
+  @@map("frais_eleves")
+}
+
+model Paiement {
+  id              String   @id @default(cuid())
+  idEtablissement String
+  idEleve         String
+  idUtilisateur   String
+  reference       String   @unique
+  montant         Decimal  @db.Decimal(12, 2)
+  modePaiement    String
+  datePaiement    DateTime @default(now())
+  statut          String   @default("CONFIRME")
+
+  etablissement   Etablissement         @relation(fields: [idEtablissement], references: [id])
+  eleve           Eleve                 @relation(fields: [idEleve], references: [id])
+  utilisateur     Utilisateur           @relation("PaiementEnregistrePar", fields: [idUtilisateur], references: [id])
+  affectations    AffectationPaiement[]
+  recu            Recu?
+  mouvementCaisse MouvementCaisse?
+
+  @@map("paiements")
+}
+
+model AffectationPaiement {
+  id             String  @id @default(cuid())
+  idPaiement     String
+  idFraisEleve   String
+  montantAffecte Decimal @db.Decimal(12, 2)
+
+  paiement   Paiement   @relation(fields: [idPaiement], references: [id])
+  fraisEleve FraisEleve @relation(fields: [idFraisEleve], references: [id])
+
+  @@unique([idPaiement, idFraisEleve])
+  @@map("affectations_paiement")
+}
+
+model CompteurRecu {
+  id            String @id @default(cuid())
+  idAnnee       String @unique
+  dernierNumero Int    @default(0)
+
+  annee AnneeScolaire @relation(fields: [idAnnee], references: [id])
+
+  @@map("compteurs_recu")
+}
+
+model Recu {
+  id              String   @id @default(cuid())
+  idPaiement      String   @unique
+  idEtablissement String
+  numeroRecu      String
+  dateEmission    DateTime @default(now())
+  statut          String   @default("DEFINITIF")
+
+  paiement      Paiement      @relation(fields: [idPaiement], references: [id])
+  etablissement Etablissement @relation(fields: [idEtablissement], references: [id])
+
+  @@unique([idEtablissement, numeroRecu])
+  @@map("recus")
+}
+
+// =====================================================
+// FINANCES
+// =====================================================
+
+model Caisse {
+  id              String   @id @default(cuid())
+  idEtablissement String   @unique
+  nom             String   @default("Caisse principale")
+  soldeInitial    Decimal  @default(0) @db.Decimal(12, 2)
+  statut          String   @default("ACTIVE")
+
+  etablissement Etablissement    @relation(fields: [idEtablissement], references: [id])
+  mouvements    MouvementCaisse[]
+
+  @@map("caisses")
+}
+
+model Depense {
+  id              String   @id @default(cuid())
+  idEtablissement String
+  idUtilisateur   String
+  description     String
+  categorie       String?
+  montantTotal    Decimal  @db.Decimal(12, 2)
+  modePaiement    String?
+  dateDepense     DateTime @default(now())
+  statut          String   @default("PAYE")
+
+  etablissement   Etablissement    @relation(fields: [idEtablissement], references: [id])
+  utilisateur     Utilisateur      @relation("DepenseEnregistrePar", fields: [idUtilisateur], references: [id])
+  mouvementCaisse MouvementCaisse?
+
+  @@map("depenses")
+}
+
+model MouvementCaisse {
+  id            String   @id @default(cuid())
+  idCaisse      String
+  typeMouvement String
+  montant       Decimal  @db.Decimal(12, 2)
+  description   String?
+  dateMouvement DateTime @default(now())
+  idPaiement    String?  @unique
+  idDepense     String?  @unique
+  idUtilisateur String?
+
+  caisse      Caisse       @relation(fields: [idCaisse], references: [id])
+  paiement    Paiement?    @relation(fields: [idPaiement], references: [id])
+  depense     Depense?     @relation(fields: [idDepense], references: [id])
+  utilisateur Utilisateur? @relation(fields: [idUtilisateur], references: [id])
+
+  @@map("mouvements_caisse")
+}
