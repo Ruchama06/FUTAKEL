@@ -126,6 +126,10 @@ export const ClasseScalarFieldEnum = {
   idAnnee: 'idAnnee',
   idEtablissement: 'idEtablissement',
   nom: 'nom',
+  niveau: 'niveau',
+  capaciteMax: 'capaciteMax',
+  nombreMatieres: 'nombreMatieres',
+  professeurPrincipal: 'professeurPrincipal',
   description: 'description'
 } as const
 
@@ -154,6 +158,7 @@ export const FraisScalarFieldEnum = {
   idClasse: 'idClasse',
   idEtablissement: 'idEtablissement',
   libelle: 'libelle',
+  typeFrais: 'typeFrais',
   montantInitial: 'montantInitial',
   dateEcheance: 'dateEcheance',
   statut: 'statut',

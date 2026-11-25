@@ -72,6 +72,10 @@ model Classe {
   idAnnee         String
   idEtablissement String
   nom             String
+  niveau          String? 
+  capaciteMax     Int?    // NOUVEAU : Nombre max d'élèves
+  nombreMatieres  Int?    // NOUVEAU : Nombre de matières (optionnel)
+  professeurPrincipal String? // NOUVEAU : Nom du prof principal
   description     String?
 
   annee  AnneeScolaire @relation(fields: [idAnnee], references: [id])
@@ -113,6 +117,7 @@ model Frais {
   idClasse        String
   idEtablissement String
   libelle         String
+  typeFrais       String   @default("ECOLAGE") // NOUVEAU : INSCRIPTION, REINSCRIPTION, ECOLAGE, UNIFORME, AUTRE
   montantInitial  Decimal  @db.Decimal(12, 2)
   dateEcheance    DateTime?
   statut          String   @default("ACTIF")
@@ -222,7 +227,7 @@ model Depense {
   idEtablissement String
   idUtilisateur   String
   description     String
-  categorie       String?
+  categorie       String   // NOUVEAU : SALAIRE, FOURNITURE, ENTRETIEN, DIVERS
   montantTotal    Decimal  @db.Decimal(12, 2)
   modePaiement    String?
   dateDepense     DateTime @default(now())

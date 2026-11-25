@@ -3,6 +3,12 @@ import { AuthProvider, useAuth } from './contexts/AuthContext';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import Layout from './components/Layout';
+import Eleves from './pages/Eleves';
+import Paiement from './pages/Paiement';
+import Caisse from './pages/Caisse';
+import Impayes from './pages/Impayes';
+import Classes from './pages/Classes';
+import Annees from './pages/Annees';
 
 function RouteProtegee({ children }: { children: React.ReactNode }) {
   const { isAuthenticated } = useAuth();
@@ -35,10 +41,12 @@ export default function App() {
           >
             <Route index element={<Navigate to="/dashboard" replace />} />
             <Route path="dashboard" element={<Dashboard />} />
-            <Route path="eleves" element={<Placeholder nom="Élèves" />} />
-            <Route path="paiement" element={<Placeholder nom="Encaisser un paiement" />} />
-            <Route path="caisse" element={<Placeholder nom="Caisse" />} />
-            <Route path="impayes" element={<Placeholder nom="Impayés" />} />
+            <Route path="eleves" element={<Eleves />} />
+            <Route path="annees" element={<Annees />} />
+            <Route path="paiement" element={<Paiement/>} />
+            <Route path="caisse" element={<Caisse />} />
+            <Route path="impayes" element={<Impayes />} />
+            <Route path="classes" element={<Classes />} />
           </Route>
         </Routes>
       </BrowserRouter>

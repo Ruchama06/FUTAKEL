@@ -29,45 +29,20 @@ export default function Dashboard() {
   }, []);
 
   const kpis = [
-    {
-      label: 'Solde de caisse',
-      value: `${soldeCaisse.toLocaleString('fr-FR')} FCFA`,
-      icon: Wallet,
-      couleur: 'text-vert',
-    },
-    {
-      label: 'Élèves inscrits',
-      value: nbEleves.toString(),
-      icon: Users,
-      couleur: 'text-burgundy',
-    },
-    {
-      label: 'Impayés',
-      value: '—',
-      icon: AlertCircle,
-      couleur: 'text-burgundy',
-    },
-    {
-      label: 'Encaissements du mois',
-      value: '0 FCFA',
-      icon: TrendingUp,
-      couleur: 'text-vert',
-    },
+    { label: 'Solde de caisse', value: `${soldeCaisse.toLocaleString('fr-FR')} FCFA`, icon: Wallet, couleur: 'text-vert' },
+    { label: 'Élèves inscrits', value: nbEleves.toString(), icon: Users, couleur: 'text-burgundy' },
+    { label: 'Impayés', value: '—', icon: AlertCircle, couleur: 'text-burgundy' },
+    { label: 'Encaissements du mois', value: '0 FCFA', icon: TrendingUp, couleur: 'text-vert' },
   ];
 
-  if (chargement) {
-    return <p className="text-texte-secondaire">Chargement...</p>;
-  }
+  if (chargement) return <p className="text-texte-secondaire">Chargement...</p>;
 
   return (
     <div>
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-texte">Tableau de bord</h1>
-        <p className="text-texte-secondaire mt-1">
-          Bonjour {utilisateur?.prenom}, voici un aperçu de Saint Basile.
-        </p>
+        <p className="text-texte-secondaire mt-1">Bonjour {utilisateur?.prenom}, voici un aperçu de Saint Basile.</p>
       </div>
-
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {kpis.map((kpi, i) => {
           const Icon = kpi.icon;
@@ -81,17 +56,6 @@ export default function Dashboard() {
             </div>
           );
         })}
-      </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-8">
-        <div className="card">
-          <h2 className="text-lg font-semibold mb-4">Évolution de la caisse</h2>
-          <p className="text-texte-secondaire text-sm">Graphique à venir (étape 10)</p>
-        </div>
-        <div className="card">
-          <h2 className="text-lg font-semibold mb-4">Derniers paiements</h2>
-          <p className="text-texte-secondaire text-sm">Liste à venir (étape 10)</p>
-        </div>
       </div>
     </div>
   );

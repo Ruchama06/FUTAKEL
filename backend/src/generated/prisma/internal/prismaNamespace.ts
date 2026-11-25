@@ -1548,6 +1548,10 @@ export const ClasseScalarFieldEnum = {
   idAnnee: 'idAnnee',
   idEtablissement: 'idEtablissement',
   nom: 'nom',
+  niveau: 'niveau',
+  capaciteMax: 'capaciteMax',
+  nombreMatieres: 'nombreMatieres',
+  professeurPrincipal: 'professeurPrincipal',
   description: 'description'
 } as const
 
@@ -1576,6 +1580,7 @@ export const FraisScalarFieldEnum = {
   idClasse: 'idClasse',
   idEtablissement: 'idEtablissement',
   libelle: 'libelle',
+  typeFrais: 'typeFrais',
   montantInitial: 'montantInitial',
   dateEcheance: 'dateEcheance',
   statut: 'statut',
@@ -1743,20 +1748,6 @@ export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaM
 
 
 /**
- * Reference to a field of type 'Decimal'
- */
-export type DecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal'>
-    
-
-
-/**
- * Reference to a field of type 'Decimal[]'
- */
-export type ListDecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal[]'>
-    
-
-
-/**
  * Reference to a field of type 'Int'
  */
 export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
@@ -1767,6 +1758,20 @@ export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'In
  * Reference to a field of type 'Int[]'
  */
 export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Decimal'
+ */
+export type DecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal'>
+    
+
+
+/**
+ * Reference to a field of type 'Decimal[]'
+ */
+export type ListDecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal[]'>
     
 
 

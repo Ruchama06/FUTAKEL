@@ -20,8 +20,20 @@ export type ClasseModel = runtime.Types.Result.DefaultSelection<Prisma.$ClassePa
 
 export type AggregateClasse = {
   _count: ClasseCountAggregateOutputType | null
+  _avg: ClasseAvgAggregateOutputType | null
+  _sum: ClasseSumAggregateOutputType | null
   _min: ClasseMinAggregateOutputType | null
   _max: ClasseMaxAggregateOutputType | null
+}
+
+export type ClasseAvgAggregateOutputType = {
+  capaciteMax: number | null
+  nombreMatieres: number | null
+}
+
+export type ClasseSumAggregateOutputType = {
+  capaciteMax: number | null
+  nombreMatieres: number | null
 }
 
 export type ClasseMinAggregateOutputType = {
@@ -29,6 +41,10 @@ export type ClasseMinAggregateOutputType = {
   idAnnee: string | null
   idEtablissement: string | null
   nom: string | null
+  niveau: string | null
+  capaciteMax: number | null
+  nombreMatieres: number | null
+  professeurPrincipal: string | null
   description: string | null
 }
 
@@ -37,6 +53,10 @@ export type ClasseMaxAggregateOutputType = {
   idAnnee: string | null
   idEtablissement: string | null
   nom: string | null
+  niveau: string | null
+  capaciteMax: number | null
+  nombreMatieres: number | null
+  professeurPrincipal: string | null
   description: string | null
 }
 
@@ -45,16 +65,34 @@ export type ClasseCountAggregateOutputType = {
   idAnnee: number
   idEtablissement: number
   nom: number
+  niveau: number
+  capaciteMax: number
+  nombreMatieres: number
+  professeurPrincipal: number
   description: number
   _all: number
 }
 
+
+export type ClasseAvgAggregateInputType = {
+  capaciteMax?: true
+  nombreMatieres?: true
+}
+
+export type ClasseSumAggregateInputType = {
+  capaciteMax?: true
+  nombreMatieres?: true
+}
 
 export type ClasseMinAggregateInputType = {
   id?: true
   idAnnee?: true
   idEtablissement?: true
   nom?: true
+  niveau?: true
+  capaciteMax?: true
+  nombreMatieres?: true
+  professeurPrincipal?: true
   description?: true
 }
 
@@ -63,6 +101,10 @@ export type ClasseMaxAggregateInputType = {
   idAnnee?: true
   idEtablissement?: true
   nom?: true
+  niveau?: true
+  capaciteMax?: true
+  nombreMatieres?: true
+  professeurPrincipal?: true
   description?: true
 }
 
@@ -71,6 +113,10 @@ export type ClasseCountAggregateInputType = {
   idAnnee?: true
   idEtablissement?: true
   nom?: true
+  niveau?: true
+  capaciteMax?: true
+  nombreMatieres?: true
+  professeurPrincipal?: true
   description?: true
   _all?: true
 }
@@ -113,6 +159,18 @@ export type ClasseAggregateArgs<ExtArgs extends runtime.Types.Extensions.Interna
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
+   * Select which fields to average
+  **/
+  _avg?: ClasseAvgAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
+   * Select which fields to sum
+  **/
+  _sum?: ClasseSumAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
    * Select which fields to find the minimum value
   **/
   _min?: ClasseMinAggregateInputType
@@ -143,6 +201,8 @@ export type ClasseGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalA
   take?: number
   skip?: number
   _count?: ClasseCountAggregateInputType | true
+  _avg?: ClasseAvgAggregateInputType
+  _sum?: ClasseSumAggregateInputType
   _min?: ClasseMinAggregateInputType
   _max?: ClasseMaxAggregateInputType
 }
@@ -152,8 +212,14 @@ export type ClasseGroupByOutputType = {
   idAnnee: string
   idEtablissement: string
   nom: string
+  niveau: string | null
+  capaciteMax: number | null
+  nombreMatieres: number | null
+  professeurPrincipal: string | null
   description: string | null
   _count: ClasseCountAggregateOutputType | null
+  _avg: ClasseAvgAggregateOutputType | null
+  _sum: ClasseSumAggregateOutputType | null
   _min: ClasseMinAggregateOutputType | null
   _max: ClasseMaxAggregateOutputType | null
 }
@@ -181,6 +247,10 @@ export type ClasseWhereInput = {
   idAnnee?: Prisma.StringFilter<"Classe"> | string
   idEtablissement?: Prisma.StringFilter<"Classe"> | string
   nom?: Prisma.StringFilter<"Classe"> | string
+  niveau?: Prisma.StringNullableFilter<"Classe"> | string | null
+  capaciteMax?: Prisma.IntNullableFilter<"Classe"> | number | null
+  nombreMatieres?: Prisma.IntNullableFilter<"Classe"> | number | null
+  professeurPrincipal?: Prisma.StringNullableFilter<"Classe"> | string | null
   description?: Prisma.StringNullableFilter<"Classe"> | string | null
   annee?: Prisma.XOR<Prisma.AnneeScolaireScalarRelationFilter, Prisma.AnneeScolaireWhereInput>
   eleves?: Prisma.EleveListRelationFilter
@@ -192,6 +262,10 @@ export type ClasseOrderByWithRelationInput = {
   idAnnee?: Prisma.SortOrder
   idEtablissement?: Prisma.SortOrder
   nom?: Prisma.SortOrder
+  niveau?: Prisma.SortOrderInput | Prisma.SortOrder
+  capaciteMax?: Prisma.SortOrderInput | Prisma.SortOrder
+  nombreMatieres?: Prisma.SortOrderInput | Prisma.SortOrder
+  professeurPrincipal?: Prisma.SortOrderInput | Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
   annee?: Prisma.AnneeScolaireOrderByWithRelationInput
   eleves?: Prisma.EleveOrderByRelationAggregateInput
@@ -207,6 +281,10 @@ export type ClasseWhereUniqueInput = Prisma.AtLeast<{
   idAnnee?: Prisma.StringFilter<"Classe"> | string
   idEtablissement?: Prisma.StringFilter<"Classe"> | string
   nom?: Prisma.StringFilter<"Classe"> | string
+  niveau?: Prisma.StringNullableFilter<"Classe"> | string | null
+  capaciteMax?: Prisma.IntNullableFilter<"Classe"> | number | null
+  nombreMatieres?: Prisma.IntNullableFilter<"Classe"> | number | null
+  professeurPrincipal?: Prisma.StringNullableFilter<"Classe"> | string | null
   description?: Prisma.StringNullableFilter<"Classe"> | string | null
   annee?: Prisma.XOR<Prisma.AnneeScolaireScalarRelationFilter, Prisma.AnneeScolaireWhereInput>
   eleves?: Prisma.EleveListRelationFilter
@@ -218,10 +296,16 @@ export type ClasseOrderByWithAggregationInput = {
   idAnnee?: Prisma.SortOrder
   idEtablissement?: Prisma.SortOrder
   nom?: Prisma.SortOrder
+  niveau?: Prisma.SortOrderInput | Prisma.SortOrder
+  capaciteMax?: Prisma.SortOrderInput | Prisma.SortOrder
+  nombreMatieres?: Prisma.SortOrderInput | Prisma.SortOrder
+  professeurPrincipal?: Prisma.SortOrderInput | Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.ClasseCountOrderByAggregateInput
+  _avg?: Prisma.ClasseAvgOrderByAggregateInput
   _max?: Prisma.ClasseMaxOrderByAggregateInput
   _min?: Prisma.ClasseMinOrderByAggregateInput
+  _sum?: Prisma.ClasseSumOrderByAggregateInput
 }
 
 export type ClasseScalarWhereWithAggregatesInput = {
@@ -232,6 +316,10 @@ export type ClasseScalarWhereWithAggregatesInput = {
   idAnnee?: Prisma.StringWithAggregatesFilter<"Classe"> | string
   idEtablissement?: Prisma.StringWithAggregatesFilter<"Classe"> | string
   nom?: Prisma.StringWithAggregatesFilter<"Classe"> | string
+  niveau?: Prisma.StringNullableWithAggregatesFilter<"Classe"> | string | null
+  capaciteMax?: Prisma.IntNullableWithAggregatesFilter<"Classe"> | number | null
+  nombreMatieres?: Prisma.IntNullableWithAggregatesFilter<"Classe"> | number | null
+  professeurPrincipal?: Prisma.StringNullableWithAggregatesFilter<"Classe"> | string | null
   description?: Prisma.StringNullableWithAggregatesFilter<"Classe"> | string | null
 }
 
@@ -239,6 +327,10 @@ export type ClasseCreateInput = {
   id?: string
   idEtablissement: string
   nom: string
+  niveau?: string | null
+  capaciteMax?: number | null
+  nombreMatieres?: number | null
+  professeurPrincipal?: string | null
   description?: string | null
   annee: Prisma.AnneeScolaireCreateNestedOneWithoutClassesInput
   eleves?: Prisma.EleveCreateNestedManyWithoutClasseInput
@@ -250,6 +342,10 @@ export type ClasseUncheckedCreateInput = {
   idAnnee: string
   idEtablissement: string
   nom: string
+  niveau?: string | null
+  capaciteMax?: number | null
+  nombreMatieres?: number | null
+  professeurPrincipal?: string | null
   description?: string | null
   eleves?: Prisma.EleveUncheckedCreateNestedManyWithoutClasseInput
   frais?: Prisma.FraisUncheckedCreateNestedManyWithoutClasseInput
@@ -259,6 +355,10 @@ export type ClasseUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idEtablissement?: Prisma.StringFieldUpdateOperationsInput | string
   nom?: Prisma.StringFieldUpdateOperationsInput | string
+  niveau?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  capaciteMax?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  nombreMatieres?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  professeurPrincipal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   annee?: Prisma.AnneeScolaireUpdateOneRequiredWithoutClassesNestedInput
   eleves?: Prisma.EleveUpdateManyWithoutClasseNestedInput
@@ -270,6 +370,10 @@ export type ClasseUncheckedUpdateInput = {
   idAnnee?: Prisma.StringFieldUpdateOperationsInput | string
   idEtablissement?: Prisma.StringFieldUpdateOperationsInput | string
   nom?: Prisma.StringFieldUpdateOperationsInput | string
+  niveau?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  capaciteMax?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  nombreMatieres?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  professeurPrincipal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   eleves?: Prisma.EleveUncheckedUpdateManyWithoutClasseNestedInput
   frais?: Prisma.FraisUncheckedUpdateManyWithoutClasseNestedInput
@@ -280,6 +384,10 @@ export type ClasseCreateManyInput = {
   idAnnee: string
   idEtablissement: string
   nom: string
+  niveau?: string | null
+  capaciteMax?: number | null
+  nombreMatieres?: number | null
+  professeurPrincipal?: string | null
   description?: string | null
 }
 
@@ -287,6 +395,10 @@ export type ClasseUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idEtablissement?: Prisma.StringFieldUpdateOperationsInput | string
   nom?: Prisma.StringFieldUpdateOperationsInput | string
+  niveau?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  capaciteMax?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  nombreMatieres?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  professeurPrincipal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
@@ -295,6 +407,10 @@ export type ClasseUncheckedUpdateManyInput = {
   idAnnee?: Prisma.StringFieldUpdateOperationsInput | string
   idEtablissement?: Prisma.StringFieldUpdateOperationsInput | string
   nom?: Prisma.StringFieldUpdateOperationsInput | string
+  niveau?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  capaciteMax?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  nombreMatieres?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  professeurPrincipal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
@@ -318,7 +434,16 @@ export type ClasseCountOrderByAggregateInput = {
   idAnnee?: Prisma.SortOrder
   idEtablissement?: Prisma.SortOrder
   nom?: Prisma.SortOrder
+  niveau?: Prisma.SortOrder
+  capaciteMax?: Prisma.SortOrder
+  nombreMatieres?: Prisma.SortOrder
+  professeurPrincipal?: Prisma.SortOrder
   description?: Prisma.SortOrder
+}
+
+export type ClasseAvgOrderByAggregateInput = {
+  capaciteMax?: Prisma.SortOrder
+  nombreMatieres?: Prisma.SortOrder
 }
 
 export type ClasseMaxOrderByAggregateInput = {
@@ -326,6 +451,10 @@ export type ClasseMaxOrderByAggregateInput = {
   idAnnee?: Prisma.SortOrder
   idEtablissement?: Prisma.SortOrder
   nom?: Prisma.SortOrder
+  niveau?: Prisma.SortOrder
+  capaciteMax?: Prisma.SortOrder
+  nombreMatieres?: Prisma.SortOrder
+  professeurPrincipal?: Prisma.SortOrder
   description?: Prisma.SortOrder
 }
 
@@ -334,7 +463,16 @@ export type ClasseMinOrderByAggregateInput = {
   idAnnee?: Prisma.SortOrder
   idEtablissement?: Prisma.SortOrder
   nom?: Prisma.SortOrder
+  niveau?: Prisma.SortOrder
+  capaciteMax?: Prisma.SortOrder
+  nombreMatieres?: Prisma.SortOrder
+  professeurPrincipal?: Prisma.SortOrder
   description?: Prisma.SortOrder
+}
+
+export type ClasseSumOrderByAggregateInput = {
+  capaciteMax?: Prisma.SortOrder
+  nombreMatieres?: Prisma.SortOrder
 }
 
 export type ClasseNullableScalarRelationFilter = {
@@ -389,6 +527,14 @@ export type ClasseUncheckedUpdateManyWithoutAnneeNestedInput = {
   deleteMany?: Prisma.ClasseScalarWhereInput | Prisma.ClasseScalarWhereInput[]
 }
 
+export type NullableIntFieldUpdateOperationsInput = {
+  set?: number | null
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
+}
+
 export type ClasseCreateNestedOneWithoutElevesInput = {
   create?: Prisma.XOR<Prisma.ClasseCreateWithoutElevesInput, Prisma.ClasseUncheckedCreateWithoutElevesInput>
   connectOrCreate?: Prisma.ClasseCreateOrConnectWithoutElevesInput
@@ -423,6 +569,10 @@ export type ClasseCreateWithoutAnneeInput = {
   id?: string
   idEtablissement: string
   nom: string
+  niveau?: string | null
+  capaciteMax?: number | null
+  nombreMatieres?: number | null
+  professeurPrincipal?: string | null
   description?: string | null
   eleves?: Prisma.EleveCreateNestedManyWithoutClasseInput
   frais?: Prisma.FraisCreateNestedManyWithoutClasseInput
@@ -432,6 +582,10 @@ export type ClasseUncheckedCreateWithoutAnneeInput = {
   id?: string
   idEtablissement: string
   nom: string
+  niveau?: string | null
+  capaciteMax?: number | null
+  nombreMatieres?: number | null
+  professeurPrincipal?: string | null
   description?: string | null
   eleves?: Prisma.EleveUncheckedCreateNestedManyWithoutClasseInput
   frais?: Prisma.FraisUncheckedCreateNestedManyWithoutClasseInput
@@ -471,6 +625,10 @@ export type ClasseScalarWhereInput = {
   idAnnee?: Prisma.StringFilter<"Classe"> | string
   idEtablissement?: Prisma.StringFilter<"Classe"> | string
   nom?: Prisma.StringFilter<"Classe"> | string
+  niveau?: Prisma.StringNullableFilter<"Classe"> | string | null
+  capaciteMax?: Prisma.IntNullableFilter<"Classe"> | number | null
+  nombreMatieres?: Prisma.IntNullableFilter<"Classe"> | number | null
+  professeurPrincipal?: Prisma.StringNullableFilter<"Classe"> | string | null
   description?: Prisma.StringNullableFilter<"Classe"> | string | null
 }
 
@@ -478,6 +636,10 @@ export type ClasseCreateWithoutElevesInput = {
   id?: string
   idEtablissement: string
   nom: string
+  niveau?: string | null
+  capaciteMax?: number | null
+  nombreMatieres?: number | null
+  professeurPrincipal?: string | null
   description?: string | null
   annee: Prisma.AnneeScolaireCreateNestedOneWithoutClassesInput
   frais?: Prisma.FraisCreateNestedManyWithoutClasseInput
@@ -488,6 +650,10 @@ export type ClasseUncheckedCreateWithoutElevesInput = {
   idAnnee: string
   idEtablissement: string
   nom: string
+  niveau?: string | null
+  capaciteMax?: number | null
+  nombreMatieres?: number | null
+  professeurPrincipal?: string | null
   description?: string | null
   frais?: Prisma.FraisUncheckedCreateNestedManyWithoutClasseInput
 }
@@ -512,6 +678,10 @@ export type ClasseUpdateWithoutElevesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idEtablissement?: Prisma.StringFieldUpdateOperationsInput | string
   nom?: Prisma.StringFieldUpdateOperationsInput | string
+  niveau?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  capaciteMax?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  nombreMatieres?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  professeurPrincipal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   annee?: Prisma.AnneeScolaireUpdateOneRequiredWithoutClassesNestedInput
   frais?: Prisma.FraisUpdateManyWithoutClasseNestedInput
@@ -522,6 +692,10 @@ export type ClasseUncheckedUpdateWithoutElevesInput = {
   idAnnee?: Prisma.StringFieldUpdateOperationsInput | string
   idEtablissement?: Prisma.StringFieldUpdateOperationsInput | string
   nom?: Prisma.StringFieldUpdateOperationsInput | string
+  niveau?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  capaciteMax?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  nombreMatieres?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  professeurPrincipal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   frais?: Prisma.FraisUncheckedUpdateManyWithoutClasseNestedInput
 }
@@ -530,6 +704,10 @@ export type ClasseCreateWithoutFraisInput = {
   id?: string
   idEtablissement: string
   nom: string
+  niveau?: string | null
+  capaciteMax?: number | null
+  nombreMatieres?: number | null
+  professeurPrincipal?: string | null
   description?: string | null
   annee: Prisma.AnneeScolaireCreateNestedOneWithoutClassesInput
   eleves?: Prisma.EleveCreateNestedManyWithoutClasseInput
@@ -540,6 +718,10 @@ export type ClasseUncheckedCreateWithoutFraisInput = {
   idAnnee: string
   idEtablissement: string
   nom: string
+  niveau?: string | null
+  capaciteMax?: number | null
+  nombreMatieres?: number | null
+  professeurPrincipal?: string | null
   description?: string | null
   eleves?: Prisma.EleveUncheckedCreateNestedManyWithoutClasseInput
 }
@@ -564,6 +746,10 @@ export type ClasseUpdateWithoutFraisInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idEtablissement?: Prisma.StringFieldUpdateOperationsInput | string
   nom?: Prisma.StringFieldUpdateOperationsInput | string
+  niveau?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  capaciteMax?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  nombreMatieres?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  professeurPrincipal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   annee?: Prisma.AnneeScolaireUpdateOneRequiredWithoutClassesNestedInput
   eleves?: Prisma.EleveUpdateManyWithoutClasseNestedInput
@@ -574,6 +760,10 @@ export type ClasseUncheckedUpdateWithoutFraisInput = {
   idAnnee?: Prisma.StringFieldUpdateOperationsInput | string
   idEtablissement?: Prisma.StringFieldUpdateOperationsInput | string
   nom?: Prisma.StringFieldUpdateOperationsInput | string
+  niveau?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  capaciteMax?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  nombreMatieres?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  professeurPrincipal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   eleves?: Prisma.EleveUncheckedUpdateManyWithoutClasseNestedInput
 }
@@ -582,6 +772,10 @@ export type ClasseCreateManyAnneeInput = {
   id?: string
   idEtablissement: string
   nom: string
+  niveau?: string | null
+  capaciteMax?: number | null
+  nombreMatieres?: number | null
+  professeurPrincipal?: string | null
   description?: string | null
 }
 
@@ -589,6 +783,10 @@ export type ClasseUpdateWithoutAnneeInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idEtablissement?: Prisma.StringFieldUpdateOperationsInput | string
   nom?: Prisma.StringFieldUpdateOperationsInput | string
+  niveau?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  capaciteMax?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  nombreMatieres?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  professeurPrincipal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   eleves?: Prisma.EleveUpdateManyWithoutClasseNestedInput
   frais?: Prisma.FraisUpdateManyWithoutClasseNestedInput
@@ -598,6 +796,10 @@ export type ClasseUncheckedUpdateWithoutAnneeInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idEtablissement?: Prisma.StringFieldUpdateOperationsInput | string
   nom?: Prisma.StringFieldUpdateOperationsInput | string
+  niveau?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  capaciteMax?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  nombreMatieres?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  professeurPrincipal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   eleves?: Prisma.EleveUncheckedUpdateManyWithoutClasseNestedInput
   frais?: Prisma.FraisUncheckedUpdateManyWithoutClasseNestedInput
@@ -607,6 +809,10 @@ export type ClasseUncheckedUpdateManyWithoutAnneeInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idEtablissement?: Prisma.StringFieldUpdateOperationsInput | string
   nom?: Prisma.StringFieldUpdateOperationsInput | string
+  niveau?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  capaciteMax?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  nombreMatieres?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  professeurPrincipal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
@@ -655,6 +861,10 @@ export type ClasseSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   idAnnee?: boolean
   idEtablissement?: boolean
   nom?: boolean
+  niveau?: boolean
+  capaciteMax?: boolean
+  nombreMatieres?: boolean
+  professeurPrincipal?: boolean
   description?: boolean
   annee?: boolean | Prisma.AnneeScolaireDefaultArgs<ExtArgs>
   eleves?: boolean | Prisma.Classe$elevesArgs<ExtArgs>
@@ -667,6 +877,10 @@ export type ClasseSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   idAnnee?: boolean
   idEtablissement?: boolean
   nom?: boolean
+  niveau?: boolean
+  capaciteMax?: boolean
+  nombreMatieres?: boolean
+  professeurPrincipal?: boolean
   description?: boolean
   annee?: boolean | Prisma.AnneeScolaireDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["classe"]>
@@ -676,6 +890,10 @@ export type ClasseSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   idAnnee?: boolean
   idEtablissement?: boolean
   nom?: boolean
+  niveau?: boolean
+  capaciteMax?: boolean
+  nombreMatieres?: boolean
+  professeurPrincipal?: boolean
   description?: boolean
   annee?: boolean | Prisma.AnneeScolaireDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["classe"]>
@@ -685,10 +903,14 @@ export type ClasseSelectScalar = {
   idAnnee?: boolean
   idEtablissement?: boolean
   nom?: boolean
+  niveau?: boolean
+  capaciteMax?: boolean
+  nombreMatieres?: boolean
+  professeurPrincipal?: boolean
   description?: boolean
 }
 
-export type ClasseOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "idAnnee" | "idEtablissement" | "nom" | "description", ExtArgs["result"]["classe"]>
+export type ClasseOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "idAnnee" | "idEtablissement" | "nom" | "niveau" | "capaciteMax" | "nombreMatieres" | "professeurPrincipal" | "description", ExtArgs["result"]["classe"]>
 export type ClasseInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   annee?: boolean | Prisma.AnneeScolaireDefaultArgs<ExtArgs>
   eleves?: boolean | Prisma.Classe$elevesArgs<ExtArgs>
@@ -714,6 +936,10 @@ export type $ClassePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     idAnnee: string
     idEtablissement: string
     nom: string
+    niveau: string | null
+    capaciteMax: number | null
+    nombreMatieres: number | null
+    professeurPrincipal: string | null
     description: string | null
   }, ExtArgs["result"]["classe"]>
   composites: {}
@@ -1145,6 +1371,10 @@ export interface ClasseFieldRefs {
   readonly idAnnee: Prisma.FieldRef<"Classe", 'String'>
   readonly idEtablissement: Prisma.FieldRef<"Classe", 'String'>
   readonly nom: Prisma.FieldRef<"Classe", 'String'>
+  readonly niveau: Prisma.FieldRef<"Classe", 'String'>
+  readonly capaciteMax: Prisma.FieldRef<"Classe", 'Int'>
+  readonly nombreMatieres: Prisma.FieldRef<"Classe", 'Int'>
+  readonly professeurPrincipal: Prisma.FieldRef<"Classe", 'String'>
   readonly description: Prisma.FieldRef<"Classe", 'String'>
 }
     

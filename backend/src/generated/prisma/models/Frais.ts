@@ -39,6 +39,7 @@ export type FraisMinAggregateOutputType = {
   idClasse: string | null
   idEtablissement: string | null
   libelle: string | null
+  typeFrais: string | null
   montantInitial: runtime.Decimal | null
   dateEcheance: Date | null
   statut: string | null
@@ -50,6 +51,7 @@ export type FraisMaxAggregateOutputType = {
   idClasse: string | null
   idEtablissement: string | null
   libelle: string | null
+  typeFrais: string | null
   montantInitial: runtime.Decimal | null
   dateEcheance: Date | null
   statut: string | null
@@ -61,6 +63,7 @@ export type FraisCountAggregateOutputType = {
   idClasse: number
   idEtablissement: number
   libelle: number
+  typeFrais: number
   montantInitial: number
   dateEcheance: number
   statut: number
@@ -82,6 +85,7 @@ export type FraisMinAggregateInputType = {
   idClasse?: true
   idEtablissement?: true
   libelle?: true
+  typeFrais?: true
   montantInitial?: true
   dateEcheance?: true
   statut?: true
@@ -93,6 +97,7 @@ export type FraisMaxAggregateInputType = {
   idClasse?: true
   idEtablissement?: true
   libelle?: true
+  typeFrais?: true
   montantInitial?: true
   dateEcheance?: true
   statut?: true
@@ -104,6 +109,7 @@ export type FraisCountAggregateInputType = {
   idClasse?: true
   idEtablissement?: true
   libelle?: true
+  typeFrais?: true
   montantInitial?: true
   dateEcheance?: true
   statut?: true
@@ -202,6 +208,7 @@ export type FraisGroupByOutputType = {
   idClasse: string
   idEtablissement: string
   libelle: string
+  typeFrais: string
   montantInitial: runtime.Decimal
   dateEcheance: Date | null
   statut: string
@@ -236,6 +243,7 @@ export type FraisWhereInput = {
   idClasse?: Prisma.StringFilter<"Frais"> | string
   idEtablissement?: Prisma.StringFilter<"Frais"> | string
   libelle?: Prisma.StringFilter<"Frais"> | string
+  typeFrais?: Prisma.StringFilter<"Frais"> | string
   montantInitial?: Prisma.DecimalFilter<"Frais"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   dateEcheance?: Prisma.DateTimeNullableFilter<"Frais"> | Date | string | null
   statut?: Prisma.StringFilter<"Frais"> | string
@@ -250,6 +258,7 @@ export type FraisOrderByWithRelationInput = {
   idClasse?: Prisma.SortOrder
   idEtablissement?: Prisma.SortOrder
   libelle?: Prisma.SortOrder
+  typeFrais?: Prisma.SortOrder
   montantInitial?: Prisma.SortOrder
   dateEcheance?: Prisma.SortOrderInput | Prisma.SortOrder
   statut?: Prisma.SortOrder
@@ -267,6 +276,7 @@ export type FraisWhereUniqueInput = Prisma.AtLeast<{
   idClasse?: Prisma.StringFilter<"Frais"> | string
   idEtablissement?: Prisma.StringFilter<"Frais"> | string
   libelle?: Prisma.StringFilter<"Frais"> | string
+  typeFrais?: Prisma.StringFilter<"Frais"> | string
   montantInitial?: Prisma.DecimalFilter<"Frais"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   dateEcheance?: Prisma.DateTimeNullableFilter<"Frais"> | Date | string | null
   statut?: Prisma.StringFilter<"Frais"> | string
@@ -281,6 +291,7 @@ export type FraisOrderByWithAggregationInput = {
   idClasse?: Prisma.SortOrder
   idEtablissement?: Prisma.SortOrder
   libelle?: Prisma.SortOrder
+  typeFrais?: Prisma.SortOrder
   montantInitial?: Prisma.SortOrder
   dateEcheance?: Prisma.SortOrderInput | Prisma.SortOrder
   statut?: Prisma.SortOrder
@@ -300,6 +311,7 @@ export type FraisScalarWhereWithAggregatesInput = {
   idClasse?: Prisma.StringWithAggregatesFilter<"Frais"> | string
   idEtablissement?: Prisma.StringWithAggregatesFilter<"Frais"> | string
   libelle?: Prisma.StringWithAggregatesFilter<"Frais"> | string
+  typeFrais?: Prisma.StringWithAggregatesFilter<"Frais"> | string
   montantInitial?: Prisma.DecimalWithAggregatesFilter<"Frais"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   dateEcheance?: Prisma.DateTimeNullableWithAggregatesFilter<"Frais"> | Date | string | null
   statut?: Prisma.StringWithAggregatesFilter<"Frais"> | string
@@ -309,6 +321,7 @@ export type FraisScalarWhereWithAggregatesInput = {
 export type FraisCreateInput = {
   id?: string
   libelle: string
+  typeFrais?: string
   montantInitial: runtime.Decimal | runtime.DecimalJsLike | number | string
   dateEcheance?: Date | string | null
   statut?: string
@@ -323,6 +336,7 @@ export type FraisUncheckedCreateInput = {
   idClasse: string
   idEtablissement: string
   libelle: string
+  typeFrais?: string
   montantInitial: runtime.Decimal | runtime.DecimalJsLike | number | string
   dateEcheance?: Date | string | null
   statut?: string
@@ -333,6 +347,7 @@ export type FraisUncheckedCreateInput = {
 export type FraisUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   libelle?: Prisma.StringFieldUpdateOperationsInput | string
+  typeFrais?: Prisma.StringFieldUpdateOperationsInput | string
   montantInitial?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   dateEcheance?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   statut?: Prisma.StringFieldUpdateOperationsInput | string
@@ -347,6 +362,7 @@ export type FraisUncheckedUpdateInput = {
   idClasse?: Prisma.StringFieldUpdateOperationsInput | string
   idEtablissement?: Prisma.StringFieldUpdateOperationsInput | string
   libelle?: Prisma.StringFieldUpdateOperationsInput | string
+  typeFrais?: Prisma.StringFieldUpdateOperationsInput | string
   montantInitial?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   dateEcheance?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   statut?: Prisma.StringFieldUpdateOperationsInput | string
@@ -359,6 +375,7 @@ export type FraisCreateManyInput = {
   idClasse: string
   idEtablissement: string
   libelle: string
+  typeFrais?: string
   montantInitial: runtime.Decimal | runtime.DecimalJsLike | number | string
   dateEcheance?: Date | string | null
   statut?: string
@@ -368,6 +385,7 @@ export type FraisCreateManyInput = {
 export type FraisUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   libelle?: Prisma.StringFieldUpdateOperationsInput | string
+  typeFrais?: Prisma.StringFieldUpdateOperationsInput | string
   montantInitial?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   dateEcheance?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   statut?: Prisma.StringFieldUpdateOperationsInput | string
@@ -379,6 +397,7 @@ export type FraisUncheckedUpdateManyInput = {
   idClasse?: Prisma.StringFieldUpdateOperationsInput | string
   idEtablissement?: Prisma.StringFieldUpdateOperationsInput | string
   libelle?: Prisma.StringFieldUpdateOperationsInput | string
+  typeFrais?: Prisma.StringFieldUpdateOperationsInput | string
   montantInitial?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   dateEcheance?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   statut?: Prisma.StringFieldUpdateOperationsInput | string
@@ -400,6 +419,7 @@ export type FraisCountOrderByAggregateInput = {
   idClasse?: Prisma.SortOrder
   idEtablissement?: Prisma.SortOrder
   libelle?: Prisma.SortOrder
+  typeFrais?: Prisma.SortOrder
   montantInitial?: Prisma.SortOrder
   dateEcheance?: Prisma.SortOrder
   statut?: Prisma.SortOrder
@@ -415,6 +435,7 @@ export type FraisMaxOrderByAggregateInput = {
   idClasse?: Prisma.SortOrder
   idEtablissement?: Prisma.SortOrder
   libelle?: Prisma.SortOrder
+  typeFrais?: Prisma.SortOrder
   montantInitial?: Prisma.SortOrder
   dateEcheance?: Prisma.SortOrder
   statut?: Prisma.SortOrder
@@ -426,6 +447,7 @@ export type FraisMinOrderByAggregateInput = {
   idClasse?: Prisma.SortOrder
   idEtablissement?: Prisma.SortOrder
   libelle?: Prisma.SortOrder
+  typeFrais?: Prisma.SortOrder
   montantInitial?: Prisma.SortOrder
   dateEcheance?: Prisma.SortOrder
   statut?: Prisma.SortOrder
@@ -550,6 +572,7 @@ export type FraisUpdateOneRequiredWithoutFraisElevesNestedInput = {
 export type FraisCreateWithoutEtablissementInput = {
   id?: string
   libelle: string
+  typeFrais?: string
   montantInitial: runtime.Decimal | runtime.DecimalJsLike | number | string
   dateEcheance?: Date | string | null
   statut?: string
@@ -562,6 +585,7 @@ export type FraisUncheckedCreateWithoutEtablissementInput = {
   id?: string
   idClasse: string
   libelle: string
+  typeFrais?: string
   montantInitial: runtime.Decimal | runtime.DecimalJsLike | number | string
   dateEcheance?: Date | string | null
   statut?: string
@@ -603,6 +627,7 @@ export type FraisScalarWhereInput = {
   idClasse?: Prisma.StringFilter<"Frais"> | string
   idEtablissement?: Prisma.StringFilter<"Frais"> | string
   libelle?: Prisma.StringFilter<"Frais"> | string
+  typeFrais?: Prisma.StringFilter<"Frais"> | string
   montantInitial?: Prisma.DecimalFilter<"Frais"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   dateEcheance?: Prisma.DateTimeNullableFilter<"Frais"> | Date | string | null
   statut?: Prisma.StringFilter<"Frais"> | string
@@ -612,6 +637,7 @@ export type FraisScalarWhereInput = {
 export type FraisCreateWithoutClasseInput = {
   id?: string
   libelle: string
+  typeFrais?: string
   montantInitial: runtime.Decimal | runtime.DecimalJsLike | number | string
   dateEcheance?: Date | string | null
   statut?: string
@@ -624,6 +650,7 @@ export type FraisUncheckedCreateWithoutClasseInput = {
   id?: string
   idEtablissement: string
   libelle: string
+  typeFrais?: string
   montantInitial: runtime.Decimal | runtime.DecimalJsLike | number | string
   dateEcheance?: Date | string | null
   statut?: string
@@ -660,6 +687,7 @@ export type FraisUpdateManyWithWhereWithoutClasseInput = {
 export type FraisCreateWithoutFraisElevesInput = {
   id?: string
   libelle: string
+  typeFrais?: string
   montantInitial: runtime.Decimal | runtime.DecimalJsLike | number | string
   dateEcheance?: Date | string | null
   statut?: string
@@ -673,6 +701,7 @@ export type FraisUncheckedCreateWithoutFraisElevesInput = {
   idClasse: string
   idEtablissement: string
   libelle: string
+  typeFrais?: string
   montantInitial: runtime.Decimal | runtime.DecimalJsLike | number | string
   dateEcheance?: Date | string | null
   statut?: string
@@ -698,6 +727,7 @@ export type FraisUpdateToOneWithWhereWithoutFraisElevesInput = {
 export type FraisUpdateWithoutFraisElevesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   libelle?: Prisma.StringFieldUpdateOperationsInput | string
+  typeFrais?: Prisma.StringFieldUpdateOperationsInput | string
   montantInitial?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   dateEcheance?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   statut?: Prisma.StringFieldUpdateOperationsInput | string
@@ -711,6 +741,7 @@ export type FraisUncheckedUpdateWithoutFraisElevesInput = {
   idClasse?: Prisma.StringFieldUpdateOperationsInput | string
   idEtablissement?: Prisma.StringFieldUpdateOperationsInput | string
   libelle?: Prisma.StringFieldUpdateOperationsInput | string
+  typeFrais?: Prisma.StringFieldUpdateOperationsInput | string
   montantInitial?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   dateEcheance?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   statut?: Prisma.StringFieldUpdateOperationsInput | string
@@ -721,6 +752,7 @@ export type FraisCreateManyEtablissementInput = {
   id?: string
   idClasse: string
   libelle: string
+  typeFrais?: string
   montantInitial: runtime.Decimal | runtime.DecimalJsLike | number | string
   dateEcheance?: Date | string | null
   statut?: string
@@ -730,6 +762,7 @@ export type FraisCreateManyEtablissementInput = {
 export type FraisUpdateWithoutEtablissementInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   libelle?: Prisma.StringFieldUpdateOperationsInput | string
+  typeFrais?: Prisma.StringFieldUpdateOperationsInput | string
   montantInitial?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   dateEcheance?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   statut?: Prisma.StringFieldUpdateOperationsInput | string
@@ -742,6 +775,7 @@ export type FraisUncheckedUpdateWithoutEtablissementInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idClasse?: Prisma.StringFieldUpdateOperationsInput | string
   libelle?: Prisma.StringFieldUpdateOperationsInput | string
+  typeFrais?: Prisma.StringFieldUpdateOperationsInput | string
   montantInitial?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   dateEcheance?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   statut?: Prisma.StringFieldUpdateOperationsInput | string
@@ -753,6 +787,7 @@ export type FraisUncheckedUpdateManyWithoutEtablissementInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idClasse?: Prisma.StringFieldUpdateOperationsInput | string
   libelle?: Prisma.StringFieldUpdateOperationsInput | string
+  typeFrais?: Prisma.StringFieldUpdateOperationsInput | string
   montantInitial?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   dateEcheance?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   statut?: Prisma.StringFieldUpdateOperationsInput | string
@@ -763,6 +798,7 @@ export type FraisCreateManyClasseInput = {
   id?: string
   idEtablissement: string
   libelle: string
+  typeFrais?: string
   montantInitial: runtime.Decimal | runtime.DecimalJsLike | number | string
   dateEcheance?: Date | string | null
   statut?: string
@@ -772,6 +808,7 @@ export type FraisCreateManyClasseInput = {
 export type FraisUpdateWithoutClasseInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   libelle?: Prisma.StringFieldUpdateOperationsInput | string
+  typeFrais?: Prisma.StringFieldUpdateOperationsInput | string
   montantInitial?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   dateEcheance?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   statut?: Prisma.StringFieldUpdateOperationsInput | string
@@ -784,6 +821,7 @@ export type FraisUncheckedUpdateWithoutClasseInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idEtablissement?: Prisma.StringFieldUpdateOperationsInput | string
   libelle?: Prisma.StringFieldUpdateOperationsInput | string
+  typeFrais?: Prisma.StringFieldUpdateOperationsInput | string
   montantInitial?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   dateEcheance?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   statut?: Prisma.StringFieldUpdateOperationsInput | string
@@ -795,6 +833,7 @@ export type FraisUncheckedUpdateManyWithoutClasseInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idEtablissement?: Prisma.StringFieldUpdateOperationsInput | string
   libelle?: Prisma.StringFieldUpdateOperationsInput | string
+  typeFrais?: Prisma.StringFieldUpdateOperationsInput | string
   montantInitial?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   dateEcheance?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   statut?: Prisma.StringFieldUpdateOperationsInput | string
@@ -837,6 +876,7 @@ export type FraisSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   idClasse?: boolean
   idEtablissement?: boolean
   libelle?: boolean
+  typeFrais?: boolean
   montantInitial?: boolean
   dateEcheance?: boolean
   statut?: boolean
@@ -852,6 +892,7 @@ export type FraisSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   idClasse?: boolean
   idEtablissement?: boolean
   libelle?: boolean
+  typeFrais?: boolean
   montantInitial?: boolean
   dateEcheance?: boolean
   statut?: boolean
@@ -865,6 +906,7 @@ export type FraisSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   idClasse?: boolean
   idEtablissement?: boolean
   libelle?: boolean
+  typeFrais?: boolean
   montantInitial?: boolean
   dateEcheance?: boolean
   statut?: boolean
@@ -878,13 +920,14 @@ export type FraisSelectScalar = {
   idClasse?: boolean
   idEtablissement?: boolean
   libelle?: boolean
+  typeFrais?: boolean
   montantInitial?: boolean
   dateEcheance?: boolean
   statut?: boolean
   dateCreation?: boolean
 }
 
-export type FraisOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "idClasse" | "idEtablissement" | "libelle" | "montantInitial" | "dateEcheance" | "statut" | "dateCreation", ExtArgs["result"]["frais"]>
+export type FraisOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "idClasse" | "idEtablissement" | "libelle" | "typeFrais" | "montantInitial" | "dateEcheance" | "statut" | "dateCreation", ExtArgs["result"]["frais"]>
 export type FraisInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   classe?: boolean | Prisma.ClasseDefaultArgs<ExtArgs>
   etablissement?: boolean | Prisma.EtablissementDefaultArgs<ExtArgs>
@@ -912,6 +955,7 @@ export type $FraisPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     idClasse: string
     idEtablissement: string
     libelle: string
+    typeFrais: string
     montantInitial: runtime.Decimal
     dateEcheance: Date | null
     statut: string
@@ -1346,6 +1390,7 @@ export interface FraisFieldRefs {
   readonly idClasse: Prisma.FieldRef<"Frais", 'String'>
   readonly idEtablissement: Prisma.FieldRef<"Frais", 'String'>
   readonly libelle: Prisma.FieldRef<"Frais", 'String'>
+  readonly typeFrais: Prisma.FieldRef<"Frais", 'String'>
   readonly montantInitial: Prisma.FieldRef<"Frais", 'Decimal'>
   readonly dateEcheance: Prisma.FieldRef<"Frais", 'DateTime'>
   readonly statut: Prisma.FieldRef<"Frais", 'String'>

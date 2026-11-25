@@ -1,5 +1,5 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { LayoutDashboard, Users, CreditCard, Wallet, AlertCircle, LogOut } from 'lucide-react';
+import { LayoutDashboard, Users, CreditCard, Wallet, AlertCircle, LogOut, BookOpen, Calendar } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 
 export default function Sidebar() {
@@ -9,10 +9,13 @@ export default function Sidebar() {
 
   const links = [
     { to: '/dashboard', label: 'Tableau de bord', icon: LayoutDashboard },
+    { to: '/annees', label: 'Années', icon: Calendar },
     { to: '/eleves', label: 'Élèves', icon: Users },
     { to: '/paiement', label: 'Encaisser', icon: CreditCard },
     { to: '/caisse', label: 'Caisse', icon: Wallet },
     { to: '/impayes', label: 'Impayés', icon: AlertCircle },
+    { to: '/classes', label: 'Classes', icon: BookOpen },
+    
   ];
 
   function handleLogout() {
@@ -21,8 +24,7 @@ export default function Sidebar() {
   }
 
   return (
-    <aside className="w-64 min-h-screen bg-burgundy text-white flex flex-col">
-      {/* Logo */}
+   <aside className="w-64 min-h-screen bg-burgundy text-white flex flex-col print:hidden">
       <div className="p-6 border-b border-burgundy-dark">
         <h1 className="text-2xl font-bold">Saint Basile</h1>
         <p className="text-sm text-white/70 mt-1">FUTAKEL</p>

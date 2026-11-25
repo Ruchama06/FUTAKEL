@@ -208,7 +208,7 @@ export type DepenseGroupByOutputType = {
   idEtablissement: string
   idUtilisateur: string
   description: string
-  categorie: string | null
+  categorie: string
   montantTotal: runtime.Decimal
   modePaiement: string | null
   dateDepense: Date
@@ -243,7 +243,7 @@ export type DepenseWhereInput = {
   idEtablissement?: Prisma.StringFilter<"Depense"> | string
   idUtilisateur?: Prisma.StringFilter<"Depense"> | string
   description?: Prisma.StringFilter<"Depense"> | string
-  categorie?: Prisma.StringNullableFilter<"Depense"> | string | null
+  categorie?: Prisma.StringFilter<"Depense"> | string
   montantTotal?: Prisma.DecimalFilter<"Depense"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   modePaiement?: Prisma.StringNullableFilter<"Depense"> | string | null
   dateDepense?: Prisma.DateTimeFilter<"Depense"> | Date | string
@@ -258,7 +258,7 @@ export type DepenseOrderByWithRelationInput = {
   idEtablissement?: Prisma.SortOrder
   idUtilisateur?: Prisma.SortOrder
   description?: Prisma.SortOrder
-  categorie?: Prisma.SortOrderInput | Prisma.SortOrder
+  categorie?: Prisma.SortOrder
   montantTotal?: Prisma.SortOrder
   modePaiement?: Prisma.SortOrderInput | Prisma.SortOrder
   dateDepense?: Prisma.SortOrder
@@ -276,7 +276,7 @@ export type DepenseWhereUniqueInput = Prisma.AtLeast<{
   idEtablissement?: Prisma.StringFilter<"Depense"> | string
   idUtilisateur?: Prisma.StringFilter<"Depense"> | string
   description?: Prisma.StringFilter<"Depense"> | string
-  categorie?: Prisma.StringNullableFilter<"Depense"> | string | null
+  categorie?: Prisma.StringFilter<"Depense"> | string
   montantTotal?: Prisma.DecimalFilter<"Depense"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   modePaiement?: Prisma.StringNullableFilter<"Depense"> | string | null
   dateDepense?: Prisma.DateTimeFilter<"Depense"> | Date | string
@@ -291,7 +291,7 @@ export type DepenseOrderByWithAggregationInput = {
   idEtablissement?: Prisma.SortOrder
   idUtilisateur?: Prisma.SortOrder
   description?: Prisma.SortOrder
-  categorie?: Prisma.SortOrderInput | Prisma.SortOrder
+  categorie?: Prisma.SortOrder
   montantTotal?: Prisma.SortOrder
   modePaiement?: Prisma.SortOrderInput | Prisma.SortOrder
   dateDepense?: Prisma.SortOrder
@@ -311,7 +311,7 @@ export type DepenseScalarWhereWithAggregatesInput = {
   idEtablissement?: Prisma.StringWithAggregatesFilter<"Depense"> | string
   idUtilisateur?: Prisma.StringWithAggregatesFilter<"Depense"> | string
   description?: Prisma.StringWithAggregatesFilter<"Depense"> | string
-  categorie?: Prisma.StringNullableWithAggregatesFilter<"Depense"> | string | null
+  categorie?: Prisma.StringWithAggregatesFilter<"Depense"> | string
   montantTotal?: Prisma.DecimalWithAggregatesFilter<"Depense"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   modePaiement?: Prisma.StringNullableWithAggregatesFilter<"Depense"> | string | null
   dateDepense?: Prisma.DateTimeWithAggregatesFilter<"Depense"> | Date | string
@@ -321,7 +321,7 @@ export type DepenseScalarWhereWithAggregatesInput = {
 export type DepenseCreateInput = {
   id?: string
   description: string
-  categorie?: string | null
+  categorie: string
   montantTotal: runtime.Decimal | runtime.DecimalJsLike | number | string
   modePaiement?: string | null
   dateDepense?: Date | string
@@ -336,7 +336,7 @@ export type DepenseUncheckedCreateInput = {
   idEtablissement: string
   idUtilisateur: string
   description: string
-  categorie?: string | null
+  categorie: string
   montantTotal: runtime.Decimal | runtime.DecimalJsLike | number | string
   modePaiement?: string | null
   dateDepense?: Date | string
@@ -347,7 +347,7 @@ export type DepenseUncheckedCreateInput = {
 export type DepenseUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  categorie?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categorie?: Prisma.StringFieldUpdateOperationsInput | string
   montantTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   modePaiement?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dateDepense?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -362,7 +362,7 @@ export type DepenseUncheckedUpdateInput = {
   idEtablissement?: Prisma.StringFieldUpdateOperationsInput | string
   idUtilisateur?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  categorie?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categorie?: Prisma.StringFieldUpdateOperationsInput | string
   montantTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   modePaiement?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dateDepense?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -375,7 +375,7 @@ export type DepenseCreateManyInput = {
   idEtablissement: string
   idUtilisateur: string
   description: string
-  categorie?: string | null
+  categorie: string
   montantTotal: runtime.Decimal | runtime.DecimalJsLike | number | string
   modePaiement?: string | null
   dateDepense?: Date | string
@@ -385,7 +385,7 @@ export type DepenseCreateManyInput = {
 export type DepenseUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  categorie?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categorie?: Prisma.StringFieldUpdateOperationsInput | string
   montantTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   modePaiement?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dateDepense?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -397,7 +397,7 @@ export type DepenseUncheckedUpdateManyInput = {
   idEtablissement?: Prisma.StringFieldUpdateOperationsInput | string
   idUtilisateur?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  categorie?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categorie?: Prisma.StringFieldUpdateOperationsInput | string
   montantTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   modePaiement?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dateDepense?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -566,7 +566,7 @@ export type DepenseUpdateOneWithoutMouvementCaisseNestedInput = {
 export type DepenseCreateWithoutUtilisateurInput = {
   id?: string
   description: string
-  categorie?: string | null
+  categorie: string
   montantTotal: runtime.Decimal | runtime.DecimalJsLike | number | string
   modePaiement?: string | null
   dateDepense?: Date | string
@@ -579,7 +579,7 @@ export type DepenseUncheckedCreateWithoutUtilisateurInput = {
   id?: string
   idEtablissement: string
   description: string
-  categorie?: string | null
+  categorie: string
   montantTotal: runtime.Decimal | runtime.DecimalJsLike | number | string
   modePaiement?: string | null
   dateDepense?: Date | string
@@ -621,7 +621,7 @@ export type DepenseScalarWhereInput = {
   idEtablissement?: Prisma.StringFilter<"Depense"> | string
   idUtilisateur?: Prisma.StringFilter<"Depense"> | string
   description?: Prisma.StringFilter<"Depense"> | string
-  categorie?: Prisma.StringNullableFilter<"Depense"> | string | null
+  categorie?: Prisma.StringFilter<"Depense"> | string
   montantTotal?: Prisma.DecimalFilter<"Depense"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   modePaiement?: Prisma.StringNullableFilter<"Depense"> | string | null
   dateDepense?: Prisma.DateTimeFilter<"Depense"> | Date | string
@@ -631,7 +631,7 @@ export type DepenseScalarWhereInput = {
 export type DepenseCreateWithoutEtablissementInput = {
   id?: string
   description: string
-  categorie?: string | null
+  categorie: string
   montantTotal: runtime.Decimal | runtime.DecimalJsLike | number | string
   modePaiement?: string | null
   dateDepense?: Date | string
@@ -644,7 +644,7 @@ export type DepenseUncheckedCreateWithoutEtablissementInput = {
   id?: string
   idUtilisateur: string
   description: string
-  categorie?: string | null
+  categorie: string
   montantTotal: runtime.Decimal | runtime.DecimalJsLike | number | string
   modePaiement?: string | null
   dateDepense?: Date | string
@@ -681,7 +681,7 @@ export type DepenseUpdateManyWithWhereWithoutEtablissementInput = {
 export type DepenseCreateWithoutMouvementCaisseInput = {
   id?: string
   description: string
-  categorie?: string | null
+  categorie: string
   montantTotal: runtime.Decimal | runtime.DecimalJsLike | number | string
   modePaiement?: string | null
   dateDepense?: Date | string
@@ -695,7 +695,7 @@ export type DepenseUncheckedCreateWithoutMouvementCaisseInput = {
   idEtablissement: string
   idUtilisateur: string
   description: string
-  categorie?: string | null
+  categorie: string
   montantTotal: runtime.Decimal | runtime.DecimalJsLike | number | string
   modePaiement?: string | null
   dateDepense?: Date | string
@@ -721,7 +721,7 @@ export type DepenseUpdateToOneWithWhereWithoutMouvementCaisseInput = {
 export type DepenseUpdateWithoutMouvementCaisseInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  categorie?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categorie?: Prisma.StringFieldUpdateOperationsInput | string
   montantTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   modePaiement?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dateDepense?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -735,7 +735,7 @@ export type DepenseUncheckedUpdateWithoutMouvementCaisseInput = {
   idEtablissement?: Prisma.StringFieldUpdateOperationsInput | string
   idUtilisateur?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  categorie?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categorie?: Prisma.StringFieldUpdateOperationsInput | string
   montantTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   modePaiement?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dateDepense?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -746,7 +746,7 @@ export type DepenseCreateManyUtilisateurInput = {
   id?: string
   idEtablissement: string
   description: string
-  categorie?: string | null
+  categorie: string
   montantTotal: runtime.Decimal | runtime.DecimalJsLike | number | string
   modePaiement?: string | null
   dateDepense?: Date | string
@@ -756,7 +756,7 @@ export type DepenseCreateManyUtilisateurInput = {
 export type DepenseUpdateWithoutUtilisateurInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  categorie?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categorie?: Prisma.StringFieldUpdateOperationsInput | string
   montantTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   modePaiement?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dateDepense?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -769,7 +769,7 @@ export type DepenseUncheckedUpdateWithoutUtilisateurInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idEtablissement?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  categorie?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categorie?: Prisma.StringFieldUpdateOperationsInput | string
   montantTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   modePaiement?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dateDepense?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -781,7 +781,7 @@ export type DepenseUncheckedUpdateManyWithoutUtilisateurInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idEtablissement?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  categorie?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categorie?: Prisma.StringFieldUpdateOperationsInput | string
   montantTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   modePaiement?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dateDepense?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -792,7 +792,7 @@ export type DepenseCreateManyEtablissementInput = {
   id?: string
   idUtilisateur: string
   description: string
-  categorie?: string | null
+  categorie: string
   montantTotal: runtime.Decimal | runtime.DecimalJsLike | number | string
   modePaiement?: string | null
   dateDepense?: Date | string
@@ -802,7 +802,7 @@ export type DepenseCreateManyEtablissementInput = {
 export type DepenseUpdateWithoutEtablissementInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  categorie?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categorie?: Prisma.StringFieldUpdateOperationsInput | string
   montantTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   modePaiement?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dateDepense?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -815,7 +815,7 @@ export type DepenseUncheckedUpdateWithoutEtablissementInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idUtilisateur?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  categorie?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categorie?: Prisma.StringFieldUpdateOperationsInput | string
   montantTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   modePaiement?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dateDepense?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -827,7 +827,7 @@ export type DepenseUncheckedUpdateManyWithoutEtablissementInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idUtilisateur?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  categorie?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categorie?: Prisma.StringFieldUpdateOperationsInput | string
   montantTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   modePaiement?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dateDepense?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -918,7 +918,7 @@ export type $DepensePayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     idEtablissement: string
     idUtilisateur: string
     description: string
-    categorie: string | null
+    categorie: string
     montantTotal: runtime.Decimal
     modePaiement: string | null
     dateDepense: Date
